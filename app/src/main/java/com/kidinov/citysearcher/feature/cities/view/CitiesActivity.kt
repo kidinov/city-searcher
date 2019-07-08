@@ -36,7 +36,7 @@ class CitiesActivity : AppCompatActivity(), CitiesContract.View {
     }
 
     override fun showEmptyState() {
-        Toast.makeText(this, R.string.empty_cities_state, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, R.string.empty_cities_state, Toast.LENGTH_SHORT).show()
     }
 
     override fun showMapWithCoordinates(coordinates: Coordinates) {

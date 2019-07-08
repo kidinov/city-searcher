@@ -1,7 +1,6 @@
 package com.kidinov.citysearcher.common.data
 
 import java.util.LinkedList
-import java.util.TreeMap
 
 /**
  * Classic data structure for a quick prefix search.
@@ -10,7 +9,7 @@ import java.util.TreeMap
 class SearchTrie<T> {
     private val root = Node<T>()
 
-    fun search(prefix: String): List<T> {
+    fun search(prefix: String): MutableList<T> {
         fun findBottomNode(): Node<T>? {
             var cur: Node<T>? = root
 
@@ -21,7 +20,7 @@ class SearchTrie<T> {
             return cur
         }
 
-        fun findAllWordsBelow(bottom: Node<T>): List<T> {
+        fun findAllWordsBelow(bottom: Node<T>): MutableList<T> {
             val result = LinkedList<T>()
             val q = LinkedList<Node<T>>()
             q.push(bottom)
@@ -36,7 +35,7 @@ class SearchTrie<T> {
             return result
         }
 
-        return findAllWordsBelow(findBottomNode() ?: return ArrayList())
+        return findAllWordsBelow(findBottomNode() ?: return mutableListOf())
     }
 
     fun insert(word: String, value: T) {
@@ -49,12 +48,12 @@ class SearchTrie<T> {
             cur = cur.children[c]
         }
 
-        if (requireNotNull(cur).values == null) cur.values = ArrayList()
+        if (requireNotNull(cur).values == null) cur.values = LinkedList()
         cur.values!!.add(value)
     }
 
     private class Node<T> {
-        var values: ArrayList<T>? = null
-        val children = TreeMap<Char, Node<T>?>()
+        var values: LinkedList<T>? = null
+        val children = HashMap<Char, Node<T>?>()
     }
 }
