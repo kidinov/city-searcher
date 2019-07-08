@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_8">8dp</dimen>
+
+    <dimen name="city_item_height">48dp</dimen>
+    <dimen name="progress_bar_size">96dp</dimen>
+</resources>
