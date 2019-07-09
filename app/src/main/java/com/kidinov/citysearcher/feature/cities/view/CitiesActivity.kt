@@ -86,6 +86,8 @@ class CitiesActivity : AppCompatActivity(), CitiesContract.View {
     private fun restoreState(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
             etFilter.setText(savedInstanceState.query)
+        } else {
+            presenter.onPrefixChanged("")
         }
     }
 

@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 val splashModule = module {
     scope(named<SplashActivity>()) {
-        scoped<SplashContract.Presenter> { (view: SplashContract.View) -> SplashPresenter(view, get(), get()) }
+        scoped<SplashContract.Presenter> { (view: SplashContract.View) -> SplashPresenter(view, get()) }
         scoped<SplashContract.Repo> { SplashRepo(get()) }
     }
 }

@@ -23,6 +23,7 @@ dependencies {
     implementation Lib.koltin_std
     implementation Lib.coroutines
     implementation Lib.coroutines_android
+    implementation Lib.coroutines_test
 
     implementation Lib.app_compat
     implementation Lib.core_ktx
@@ -34,6 +35,8 @@ dependencies {
     implementation Lib.recycler_view
 
     testImplementation Lib.junit
+    testImplementation Lib.mockito
+    testImplementation Lib.kluent
 
     androidTestImplementation Lib.test_runner
 }

@@ -12,6 +12,7 @@ object Lib {
     val koltin_std = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN_VERSION"
     val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINS_VERSION"
     val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$COROUTINS_VERSION"
+    val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$COROUTINS_VERSION"
 
     val koin = "org.koin:koin-core:$KOIN_VERSION"
     val koin_android = "org.koin:koin-android-scope:$KOIN_VERSION"
@@ -23,6 +24,8 @@ object Lib {
     val recycler_view = "androidx.recyclerview:recyclerview:1.1.0-beta01"
 
     val junit = "junit:junit:$JUNIT_VERSION"
+    val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    val kluent = "org.amshove.kluent:kluent-android:1.50"
     val test_runner = "androidx.test:runner:$TEST_RUNNER"
 }
 

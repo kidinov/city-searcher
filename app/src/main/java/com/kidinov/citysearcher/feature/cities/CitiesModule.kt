@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 val citiesModule = module {
     scope(named<CitiesActivity>()) {
-        scoped<CitiesContract.Presenter> { (view: CitiesContract.View) -> CitiesPresenter(view, get(), get()) }
+        scoped<CitiesContract.Presenter> { (view: CitiesContract.View) -> CitiesPresenter(view, get()) }
         scoped<CitiesContract.Repo> { CitiesRepo(get()) }
         scoped { CitiesAdapter(get()) }
     }

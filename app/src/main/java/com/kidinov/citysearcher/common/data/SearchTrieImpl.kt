@@ -2,14 +2,19 @@ package com.kidinov.citysearcher.common.data
 
 import java.util.LinkedList
 
+interface SearchTrie<T> {
+    fun search(prefix: String): MutableList<T>
+    fun insert(word: String, value: T)
+}
+
 /**
  * Classic data structure for a quick prefix search.
  * O(m*n) search complexity where m word length, n amount of the words
  */
-class SearchTrie<T> {
+class SearchTrieImpl<T> : SearchTrie<T> {
     private val root = Node<T>()
 
-    fun search(prefix: String): MutableList<T> {
+    override fun search(prefix: String): MutableList<T> {
         fun findBottomNode(): Node<T>? {
             var cur: Node<T>? = root
 
@@ -28,8 +33,7 @@ class SearchTrie<T> {
                 val cur = q.pollLast()
                 if (cur.values?.isNotEmpty() == true) result.addAll(cur.values!!)
                 for (node in cur.children) {
-                    if (node.value?.values?.isNotEmpty() == true) result.addAll(node.value!!.values!!)
-                    else q.push(node.value)
+                    q.push(node.value)
                 }
             }
             return result
@@ -38,7 +42,7 @@ class SearchTrie<T> {
         return findAllWordsBelow(findBottomNode() ?: return mutableListOf())
     }
 
-    fun insert(word: String, value: T) {
+    override fun insert(word: String, value: T) {
         var cur: Node<T>? = root
 
         for (c in word.toLowerCase()) {

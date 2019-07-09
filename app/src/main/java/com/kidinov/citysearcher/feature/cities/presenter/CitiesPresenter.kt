@@ -1,9 +1,9 @@
 package com.kidinov.citysearcher.feature.cities.presenter
 
-import com.kidinov.citysearcher.common.async.DispatcherProvider
 import com.kidinov.citysearcher.common.model.City
 import com.kidinov.citysearcher.feature.cities.CitiesContract
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -11,12 +11,11 @@ import java.util.concurrent.ArrayBlockingQueue
 
 class CitiesPresenter(
     private val view: CitiesContract.View,
-    private val repo: CitiesContract.Repo,
-    dispatcherProvider: DispatcherProvider
+    private val repo: CitiesContract.Repo
 ) : CitiesContract.Presenter {
     private val supervisorJob = SupervisorJob()
-    private val ioScope = CoroutineScope(dispatcherProvider.io + supervisorJob)
-    private val uiScope = CoroutineScope(dispatcherProvider.main + supervisorJob)
+    private val ioScope = CoroutineScope(Dispatchers.IO + supervisorJob)
+    private val uiScope = CoroutineScope(Dispatchers.Main + supervisorJob)
 
     private val messageQueue = ArrayBlockingQueue<String>(5)
 
@@ -39,7 +38,6 @@ class CitiesPresenter(
                 }
             }
         }
-        messageQueue.put("")
     }
 
     override fun getItemCount(): Int = currentCities.size

@@ -8,12 +8,16 @@ import com.kidinov.citysearcher.common.model.City
 import java.io.InputStreamReader
 import java.util.LinkedList
 
-class JsonFileReader(
+interface JsonFileReader {
+    fun readJson(): MutableList<City>
+}
+
+class JsonFileReaderImpl(
     private val gson: Gson,
     private val context: Context,
     private val config: Config
-) {
-    fun readJson(): MutableList<City> {
+) : JsonFileReader {
+    override fun readJson(): MutableList<City> {
         val jsonFileName = config.jsonFileName
         val reader = JsonReader(InputStreamReader(context.assets.open(jsonFileName)))
         val cities = LinkedList<City>()
